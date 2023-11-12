@@ -1,40 +1,61 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import DescriptiveIndex from '../views/DescriptiveIndexView.vue'
+import GroupData from '../views/GroupDataView.vue'
+import UngroupData from '../views/UngroupDataView.vue'
+import SetVariable from '../components/SetVariableModal.vue'
+import UploadData from '../components/UploadDataModal.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: HomeView
     },
     {
-      path: '/descriptive-statistics',
-      name: 'about',
+      path: '/descriptive',
       children: [
         {
-          path: 'upload-data',
-          name: 'upload-data'
+          name: 'Descriptive',
+          path: '',
+          component: DescriptiveIndex
         },
         {
-          path: 'set-variable',
-          name: 'set-variable'
+          path: 'groupData',
+          children: [
+            {
+              path: '',
+              name: 'GroupData',
+              component: UploadData
+            },
+            {
+              path: 'setVariable',
+              name: 'SetVariable',
+              component: SetVariable
+            }
+          ],
+          component: GroupData
+        },
+        {
+          path: 'ungroupData',
+          name: 'UngroupData',
+          component: UngroupData
         }
       ],
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/DescriptiveStatisticsView.vue')
-    }
-    /* {
+      component: () => import('../views/DescriptiveView.vue')
+    },
+    {
+      path: '/results',
+      name: 'Results',
+      component: () => import('../views/ResultsView.vue')
+    },
+    {
       path: '/probability',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    } */
+      name: 'Probability',
+      component: () => import('../views/ProbabilityView.vue')
+    }
   ]
 })
 

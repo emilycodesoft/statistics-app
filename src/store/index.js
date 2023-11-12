@@ -1,7 +1,7 @@
 // store.js
 import { createStore } from 'vuex'
 
-export default createStore({
+const store = createStore({
   state: {
     variables: []
   },
@@ -18,3 +18,5 @@ export default createStore({
     // tus módulos aquí
   }
 })
+
+export default store

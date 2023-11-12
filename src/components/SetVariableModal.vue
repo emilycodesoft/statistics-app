@@ -1,7 +1,7 @@
 <template lang="">
   <div
     class="modal fade"
-    id="staticBackdrop"
+    id="myModal2"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
     tabindex="-1"
@@ -17,23 +17,37 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            @click="$router.back()"
           ></button>
         </div>
-        <div class="modal-body d-flex justify-content-center align-items-center">
-          <div class="form-check">
+        <div class="modal-body d-flex flex-column justify-content-center">
+          <div
+            class="form-check my-2"
+            @click="setVariable(index)"
+            v-for="(variable, index) in variables"
+            :key="variable"
+          >
             <input
               class="form-check-input"
               type="radio"
               name="flexRadioDefault"
-              id="flexRadioDefault1"
-              v-for="variable in variables"
-              :key="variable"
+              :id="`flexRadioDefault${index}`"
             />
-            <label class="form-check-label" for="flexRadioDefault1"> {{ variable }} </label>
+            <label class="form-check-label" :for="`flexRadioDefault${index}`">
+              {{ variable.name }}
+              ({{ variable.type }})
+            </label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            @click="$router.back()"
+          >
+            Close
+          </button>
           <button type="button" class="btn btn-primary">Next</button>
         </div>
       </div>
@@ -43,8 +57,17 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  mounted() {
+    const myModal = new bootstrap.Modal(document.getElementById('myModal2'))
+    myModal.show()
+  },
   computed: {
     ...mapState(['variables'])
+  },
+  methods: {
+    setVariable(index) {
+      console.log(index)
+    }
   }
 }
 </script>

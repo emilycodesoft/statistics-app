@@ -1,7 +1,9 @@
 <template lang="">
   <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Statistics</a>
+      <router-link to="/">
+        <a class="navbar-brand">Statistics</a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,7 +18,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link to="/">
+              <a class="nav-link active" aria-current="page">Home</a>
+            </router-link>
           </li>
         </ul>
       </div>
