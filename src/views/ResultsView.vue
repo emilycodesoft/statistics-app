@@ -23,8 +23,25 @@
         </template>
       </div>
     </div>
-    <div class="my-4 d-flex justify-content-center" v-if="showFrecuenciesTable">
-      <button class="btn btn-primary">Statistic Graphic</button>
+    <div
+      class="my-4 d-flex flex-column align-items-center justify-content-center"
+      v-if="showFrecuenciesTable"
+    >
+      <select
+        class="form-select w-25 mb-3"
+        aria-label="Default select example"
+        v-model="componentId"
+      >
+        <option selected>Select an statistical graphic</option>
+        <option value="LineChart">Line Graph</option>
+        <option value="BarChart">Bar Chart</option>
+        <option value="PieChart">Pie Chart</option>
+        <option value="ScatterChart">Scatter Chart</option>
+        <option value="Histogram">Histogram</option>
+      </select>
+    </div>
+    <div v-if="labels.length || data.length">
+      <component :is="componentId" :labels="labels" :data="data"></component>
     </div>
   </div>
 </template>
@@ -32,23 +49,27 @@
 import { mapState } from 'vuex'
 import Statistics from 'statistics.js'
 import FrecuenciesTable from '../components/FrecuenciesTable.vue'
+import LineChart from '../components/LineChart.vue'
 let stats = new Statistics({}, {}, {})
 
 export default {
-  components: { FrecuenciesTable },
+  components: { FrecuenciesTable, LineChart },
   data() {
     return {
+      componentId: 'LineChart',
       values: {
         media: null,
         mode: null,
         variance: null,
         standardDeviation: null
       },
+      labels: [],
+      data: [],
       showFrecuenciesTable: true
     }
   },
   computed: {
-    ...mapState(['selectedVariable'])
+    ...mapState(['selectedVariable', 'intervals'])
   },
 
   created() {
@@ -59,11 +80,23 @@ export default {
     this.values.media = this.calculateMedia()
     this.values.mode = this.calculateMode()
 
-    console.log(this.selectedVariable)
     if (this.selectedVariable.type != 'categoric') {
       this.values.variance = this.calculateVariance()
       this.values.standardDeviation = this.calculateStandardVariation()
     }
+  },
+  mounted() {
+    if (Object.hasOwn(this.intervals[0], 'inferiorLimit')) {
+      this.intervals.forEach((element) => {
+        this.labels.push(`[${element.inferiorLimit} - ${element.superiorLimit}]`)
+      })
+    } else {
+      this.intervals.forEach((element) => {
+        this.labels.push(element.value)
+      })
+    }
+
+    this.data = this.intervals.map((element) => element.absoluteFrecuency)
   },
   methods: {
     calculateMedia() {
@@ -79,6 +112,11 @@ export default {
       return stats.standardDeviation(this.selectedVariable.data).toFixed(3)
     }
   }
+  /* watch: {
+    componentId(newValue, oldValue) {
+      console.log(newValue)
+    }
+  } */
 }
 </script>
 <style>

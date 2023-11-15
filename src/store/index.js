@@ -3,7 +3,6 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    /* variables: [], */
     groupData: {
       variables: [],
       results: [],
@@ -14,7 +13,8 @@ const store = createStore({
       type: null,
       index: null,
       data: []
-    }
+    },
+    intervals: []
   },
   mutations: {
     SET_GROUP_DATA(state, { variables, results, totalRecords }) {
@@ -32,8 +32,9 @@ const store = createStore({
         data
       }
     },
-    SET_VARIABLES(state, payload) {
-      state.variables = payload
+    SET_INTERVALS(state, payload) {
+      console.log(payload)
+      state.intervals = payload
     }
   },
   actions: {},

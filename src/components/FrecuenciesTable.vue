@@ -31,19 +31,11 @@
 import Statistics from 'statistics.js'
 let stats = new Statistics({}, {}, {})
 
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      intervals: [
-        {
-          inferiorLimit: 0,
-          relativefrecuency: 0,
-          absoluteFrecuency: 0,
-          acumulativeFrecuency: 0,
-          superiorLimit: 0
-        }
-      ],
+      intervals: [],
       fixedNumber: 2,
       showFrecuenciesTable: true
     }
@@ -52,6 +44,7 @@ export default {
     ...mapState(['groupData', 'selectedVariable'])
   },
   methods: {
+    ...mapMutations(['SET_INTERVALS']),
     frecuenciesForNonContinuousValues() {
       let uniqueValues = []
 
@@ -138,11 +131,6 @@ export default {
       this.fixedNumber = 0
     }
 
-    /* if (numberOfIntervals >= 20) {
-      this.showFrecuenciesTable = false
-      return
-    } */
-
     if (
       this.selectedVariable.type == 'numeric discrete' ||
       this.selectedVariable.type == 'categoric'
@@ -151,6 +139,7 @@ export default {
     } else {
       this.frecuenciesForContinuousValues()
     }
+    this.SET_INTERVALS(this.intervals)
   }
 }
 </script>
