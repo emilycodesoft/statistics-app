@@ -12,19 +12,19 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Choose the variable to analyze</h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            @click="$router.back()"
-          ></button>
+          <router-link :to="{ name: 'GroupData' }">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </router-link>
         </div>
         <div class="modal-body d-flex flex-column justify-content-center">
           <div
             class="form-check my-2"
-            @click="setVariable(index)"
-            v-for="(variable, index) in variables"
+            v-for="(variable, index) in groupData.variables"
             :key="variable"
           >
             <input
@@ -32,6 +32,8 @@
               type="radio"
               name="flexRadioDefault"
               :id="`flexRadioDefault${index}`"
+              :value="index"
+              v-model="variableIndex"
             />
             <label class="form-check-label" :for="`flexRadioDefault${index}`">
               {{ variable.name }}
@@ -40,33 +42,64 @@
           </div>
         </div>
         <div class="modal-footer">
+          <router-link :to="{ name: 'GroupData' }">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button></router-link
+          >
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-primary"
+            @click="seeGeneralReport"
             data-bs-dismiss="modal"
-            @click="$router.back()"
+            aria-label="Close"
           >
-            Close
+            Next
           </button>
-          <button type="button" class="btn btn-primary">Next</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
+  data() {
+    return {
+      variableIndex: null
+    }
+  },
   mounted() {
+    if (!this.groupData.totalRecords) {
+      this.$router.push({ name: 'GroupData' })
+      return
+    }
+    // eslint-disable-next-line no-undef
     const myModal = new bootstrap.Modal(document.getElementById('myModal2'))
     myModal.show()
   },
   computed: {
-    ...mapState(['variables'])
+    ...mapState(['groupData'])
   },
   methods: {
-    setVariable(index) {
-      console.log(index)
+    ...mapMutations(['SET_SELECTED_VARIABLE']),
+    seeGeneralReport() {
+      if (this.variableIndex == null) return
+
+      let res = this.groupData.results.slice(1).map((element) => {
+        return element[this.variableIndex]
+      })
+
+      let data = res.filter((element) => typeof element !== 'undefined')
+
+      this.SET_SELECTED_VARIABLE({
+        ...this.groupData.variables[this.variableIndex],
+        index: this.variableIndex,
+        data
+      })
+      /* const myModal = new bootstrap.Modal(document.getElementById('modal-backdrop'))
+      myModal.remove() */
+      this.$router.push({ name: 'Results' })
     }
   }
 }

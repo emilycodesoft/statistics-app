@@ -12,13 +12,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Data</h1>
-          <button
-            type="button"
-            class="btn-close"
-            @click="$router.back()"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <router-link :to="{ name: 'Descriptive' }">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </router-link>
         </div>
         <div class="modal-body d-flex flex-column justify-content-center">
           <div class="d-flex justify-content-center align-items-center">
@@ -37,18 +38,23 @@
           <p>
             <b>{{ totalRecords }}</b> records
           </p>
-          <button class="btn btn-primary align-self-center">Preview data</button>
+          <button class="btn btn-primary align-self-center" v-show="totalRecords">
+            Preview data
+          </button>
         </div>
         <div class="modal-footer">
+          <router-link :to="{ name: 'Descriptive' }">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </router-link>
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-primary"
+            @click="checkDocument()"
             data-bs-dismiss="modal"
-            @click="$router.back()"
+            aria-label="Close"
           >
-            Close
+            Next
           </button>
-          <button type="button" class="btn btn-primary" @click="checkDocument()">Next</button>
         </div>
       </div>
     </div>
@@ -57,29 +63,23 @@
 <script>
 import Papa from 'papaparse'
 import { mapMutations } from 'vuex'
-import Statistics from 'statistics.js'
-
-let stats = new Statistics({}, {}, {})
 
 export default {
   data() {
     return {
       fileName: '',
+      results: null,
+      variables: [],
       totalRecords: 0
     }
   },
   mounted() {
+    // eslint-disable-next-line no-undef
     const myModal = new bootstrap.Modal(document.getElementById('myModal'))
     myModal.show()
   },
   methods: {
-    ...mapMutations(['SET_VARIABLES']),
-    calculateMedia(data) {
-      return stats.median(data)
-    },
-    calculateMode(data) {
-      return stats.mode(data)
-    },
+    ...mapMutations(['SET_GROUP_DATA']),
     updateFileName(e) {
       let file = e.target.files[0]
       this.fileName = file.name
@@ -89,32 +89,13 @@ export default {
       Papa.parse(file, {
         dynamicTyping: true,
         complete: function (results) {
+          that.results = results.data
           that.totalRecords = results.data.length - 2
 
           let variableNames = results.data[0]
-          let variables = []
 
-          for (let index = 0; index < variableNames.length; index++) {
+          variableNames.forEach((name, index) => {
             let type = ''
-            let values = {
-              media: null,
-              mode: null,
-              midRange: null,
-              variance: null,
-              standardDeviation: null
-            }
-            let data = results.data.map((element) => {
-              return element[index]
-            })
-
-            values.media = that.calculateMedia(data)
-            values.mode = that.calculateMode(data)
-
-            if (values.mode.length == results.data.length) {
-              values.mode = null
-            }
-
-            console.log(values)
 
             if (typeof results.data[1][index] == 'string') {
               type = 'categoric'
@@ -124,17 +105,17 @@ export default {
               type = 'numeric continue'
             }
 
-            variables.push({
-              name: variableNames[index],
-              type,
-              ...values
-            })
-          }
-          that.SET_VARIABLES(variables)
+            that.variables.push({ name, type })
+          })
         }
       })
     },
     checkDocument() {
+      this.SET_GROUP_DATA({
+        variables: this.variables,
+        results: this.results,
+        totalRecords: this.totalRecords
+      })
       this.$router.push({ name: 'SetVariable' })
     }
   }
