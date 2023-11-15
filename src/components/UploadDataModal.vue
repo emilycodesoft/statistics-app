@@ -90,7 +90,7 @@ export default {
         dynamicTyping: true,
         complete: function (results) {
           that.results = results.data
-          that.totalRecords = results.data.length - 2
+          that.totalRecords = results.data.length - 1
 
           let variableNames = results.data[0]
 
