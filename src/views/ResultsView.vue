@@ -15,7 +15,7 @@
       </div>
       <div class="w-50">
         <h3>Mesuarements</h3>
-        <p><b>Media: </b> {{ values.media }}</p>
+        <p><b>Arithmetic Mean: </b> {{ values.mean }}</p>
         <p><b>Mode: </b> {{ values.mode }}</p>
         <template v-if="selectedVariable.type != 'categoric'">
           <p><b>Variance: </b> {{ values.variance }}</p>
@@ -36,12 +36,17 @@
         <option value="LineChart">Line Graph</option>
         <option value="BarChart">Bar Chart</option>
         <option value="PieChart">Pie Chart</option>
-        <option value="ScatterChart">Scatter Chart</option>
-        <option value="Histogram">Histogram</option>
+        <!-- <option value="ScatterChart">Scatter Chart</option> -->
+        <!-- <option value="Histogram">Histogram</option> -->
       </select>
     </div>
     <div v-if="labels.length || data.length">
-      <component :is="componentId" :labels="labels" :data="data"></component>
+      <component
+        :is="componentId"
+        :labels="labels"
+        :data="data"
+        :randomColors="randomColors"
+      ></component>
     </div>
   </div>
 </template>
@@ -50,21 +55,26 @@ import { mapState } from 'vuex'
 import Statistics from 'statistics.js'
 import FrecuenciesTable from '../components/FrecuenciesTable.vue'
 import LineChart from '../components/LineChart.vue'
+import BarChart from '../components/BarChart.vue'
+import PieChart from '../components/PieChart.vue'
 let stats = new Statistics({}, {}, {})
 
+import randomColor from 'randomcolor'
+
 export default {
-  components: { FrecuenciesTable, LineChart },
+  components: { FrecuenciesTable, LineChart, PieChart, BarChart },
   data() {
     return {
       componentId: 'LineChart',
       values: {
-        media: null,
+        mean: null,
         mode: null,
         variance: null,
         standardDeviation: null
       },
       labels: [],
       data: [],
+      randomColors: [],
       showFrecuenciesTable: true
     }
   },
@@ -77,7 +87,7 @@ export default {
       this.$router.push({ name: 'Home' })
       return
     }
-    this.values.media = this.calculateMedia()
+    this.values.mean = Math.round(this.calculateMean())
     this.values.mode = this.calculateMode()
 
     if (this.selectedVariable.type != 'categoric') {
@@ -97,10 +107,16 @@ export default {
     }
 
     this.data = this.intervals.map((element) => element.absoluteFrecuency)
+
+    this.randomColors = randomColor({
+      count: this.data.length,
+      luminosity: 'light',
+      hue: 'blue'
+    })
   },
   methods: {
-    calculateMedia() {
-      return stats.median(this.selectedVariable.data)
+    calculateMean() {
+      return stats.arithmeticMean(this.selectedVariable.data)
     },
     calculateMode() {
       return stats.mode(this.selectedVariable.data)

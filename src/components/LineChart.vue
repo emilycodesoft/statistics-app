@@ -10,7 +10,7 @@
 import Chart from 'chart.js/auto'
 import { mapState } from 'vuex'
 export default {
-  props: ['labels', 'data'],
+  props: ['labels', 'data', 'randomColors'],
   computed: {
     ...mapState(['intervals'])
   },
@@ -26,7 +26,7 @@ export default {
             label: '',
             data: this.data,
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: this.randomColors[0],
             tension: 0.1
           }
         ]
