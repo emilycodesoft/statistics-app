@@ -26,7 +26,6 @@ export default {
             label: '',
             data: this.data,
             fill: false,
-
             backgroundColor: this.randomColors,
             borderWidth: 1
           }

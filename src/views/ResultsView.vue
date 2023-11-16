@@ -36,11 +36,9 @@
         <option value="LineChart">Line Graph</option>
         <option value="BarChart">Bar Chart</option>
         <option value="PieChart">Pie Chart</option>
-        <!-- <option value="ScatterChart">Scatter Chart</option> -->
-        <!-- <option value="Histogram">Histogram</option> -->
       </select>
     </div>
-    <div v-if="labels.length || data.length">
+    <div v-if="labels.length || data.length" style="position: relative; height: 40vh; width: 100%">
       <component
         :is="componentId"
         :labels="labels"
@@ -128,11 +126,6 @@ export default {
       return stats.standardDeviation(this.selectedVariable.data).toFixed(3)
     }
   }
-  /* watch: {
-    componentId(newValue, oldValue) {
-      console.log(newValue)
-    }
-  } */
 }
 </script>
 <style>

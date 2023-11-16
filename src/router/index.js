@@ -1,10 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
 import DescriptiveIndex from '../views/DescriptiveIndexView.vue'
+import ProbabilityIndex from '../views/ProbabilityIndexView.vue'
+
 import GroupData from '../views/GroupDataView.vue'
 import UngroupData from '../views/UngroupDataView.vue'
+
 import SetVariable from '../components/SetVariableModal.vue'
 import UploadData from '../components/UploadDataModal.vue'
+
+import BinomialDistribution from '../components/BinomialDistribution.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,7 +59,18 @@ const router = createRouter({
     },
     {
       path: '/probability',
-      name: 'Probability',
+      children: [
+        {
+          path: '',
+          name: 'Probability',
+          component: ProbabilityIndex
+        },
+        {
+          path: 'binomialDistribution',
+          name: 'BinomialDistribution',
+          component: BinomialDistribution
+        }
+      ],
       component: () => import('../views/ProbabilityView.vue')
     }
   ]
