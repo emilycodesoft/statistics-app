@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import PreviewData from '../views/PreviewDataView.vue'
 
 import DescriptiveIndex from '../views/DescriptiveIndexView.vue'
 import ProbabilityIndex from '../views/ProbabilityIndexView.vue'
@@ -19,6 +20,11 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: HomeView
+    },
+    {
+      path: '/previewData',
+      name: 'PreviewData',
+      component: PreviewData
     },
     {
       path: '/descriptive',

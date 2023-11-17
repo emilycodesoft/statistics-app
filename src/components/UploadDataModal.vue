@@ -38,7 +38,12 @@
           <p>
             <b>{{ totalRecords }}</b> records
           </p>
-          <button class="btn btn-primary align-self-center" v-show="totalRecords">
+
+          <button
+            class="btn btn-primary align-self-center"
+            @click="previewData"
+            v-show="totalRecords"
+          >
             Preview data
           </button>
         </div>
@@ -109,6 +114,14 @@ export default {
           })
         }
       })
+    },
+    previewData() {
+      this.SET_GROUP_DATA({
+        variables: this.variables,
+        results: this.results,
+        totalRecords: this.totalRecords
+      })
+      this.$router.push({ name: 'PreviewData' })
     },
     checkDocument() {
       this.SET_GROUP_DATA({

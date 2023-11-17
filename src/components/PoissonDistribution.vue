@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Binomial Distribution'"
+    :distributionName="'Poisson Distribution'"
     :data="data"
     :signs="signs"
     @calculate="calculate"
@@ -17,8 +17,7 @@ export default {
   data() {
     return {
       data: {
-        n: 0,
-        p: 0
+        lambda: 0
       },
       signs: ['=', '>=', '<=', '>', '<']
     }

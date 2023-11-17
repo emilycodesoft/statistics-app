@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap-icons": "^1.11.1",
     "chart.js": "^4.4.0",
+    "gridjs-vue": "^5.0.4",
     "papaparse": "^5.4.1",
     "randomcolor": "^0.6.2",
     "statistics.js": "^1.0.0",

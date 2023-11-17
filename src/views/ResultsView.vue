@@ -38,7 +38,7 @@
         <option value="PieChart">Pie Chart</option>
       </select>
     </div>
-    <div v-if="labels.length || data.length" style="position: relative; height: 40vh; width: 100%">
+    <div v-if="labels.length || data.length">
       <component
         :is="componentId"
         :labels="labels"
@@ -63,7 +63,7 @@ export default {
   components: { FrecuenciesTable, LineChart, PieChart, BarChart },
   data() {
     return {
-      componentId: 'LineChart',
+      componentId: 'BarChart',
       values: {
         mean: null,
         mode: null,
