@@ -52,7 +52,7 @@
           </div>
           <!-- DistributionResult -->
           <div class="d-flex justify-content-center" v-if="showResult">
-            <p>P(x {{ sign }} {{ k }}) = {{ result }}</p>
+            <p>P(x {{ sign }} {{ k }}) = {{ parseFloat(result.toFixed(2)) }}</p>
           </div>
         </div>
 
@@ -67,7 +67,7 @@
 </template>
 <script>
 export default {
-  props: ['data', 'signs', 'distributionName'],
+  props: ['data', 'signs', 'distributionName', 'result'],
   data() {
     return {
       sign: this.signs[0],
@@ -83,6 +83,7 @@ export default {
   methods: {
     calculate() {
       this.$emit('calculate', { data: { ...this.data, k: this.k }, sign: this.sign })
+      this.showResult = true
     }
   }
 }

@@ -107,9 +107,9 @@ export default {
     this.data = this.intervals.map((element) => element.absoluteFrecuency)
 
     this.randomColors = randomColor({
-      count: this.data.length,
-      luminosity: 'light',
-      hue: 'blue'
+      count: this.data.length
+      /* luminosity: 'light',
+      hue: 'blue' */
     })
   },
   methods: {

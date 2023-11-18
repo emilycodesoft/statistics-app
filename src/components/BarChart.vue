@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    style="position: relative; height: 40vh; width: 100%"
+    style="position: relative; height: 40vh; width: 100vw"
     class="d-flex justify-content-center mb-4"
   >
     <canvas id="myChart"></canvas>

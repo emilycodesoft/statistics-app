@@ -4,14 +4,12 @@
     :data="data"
     :signs="signs"
     @calculate="calculate"
+    :result="result"
   />
 </template>
 <script>
-import Statistics from 'statistics.js'
 import Distribution from './Distribution.vue'
-
-let stats = new Statistics({}, {}, {})
-
+import { jStat } from 'jstat'
 export default {
   components: { Distribution },
   data() {
@@ -20,12 +18,13 @@ export default {
         n: 0,
         p: 0
       },
-      signs: ['=', '>=', '<=', '>', '<']
+      signs: ['='],
+      result: 0
     }
   },
   methods: {
     calculate({ data, sign }) {
-      return true
+      this.result = jStat.binomial.pdf(data.k, data.n, data.p)
     }
   }
 }

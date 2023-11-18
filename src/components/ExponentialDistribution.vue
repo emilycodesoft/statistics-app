@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Poisson Distribution'"
+    :distributionName="'Exponential Distribution'"
     :data="data"
     :signs="signs"
     @calculate="calculate"
@@ -8,9 +8,8 @@
   />
 </template>
 <script>
-import { jStat } from 'jstat'
 import Distribution from './Distribution.vue'
-
+import { jStat } from 'jstat'
 export default {
   components: { Distribution },
   data() {
@@ -24,7 +23,7 @@ export default {
   },
   methods: {
     calculate({ data, sign }) {
-      this.result = jStat.poisson.pdf(data.k, data.lambda)
+      this.result = jStat.exponential.pdf(data.k, data.lambda)
     }
   }
 }

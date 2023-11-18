@@ -26,4 +26,8 @@
 <script>
 export default {}
 </script>
-<style></style>
+<style>
+nav {
+  background-color: #1e378a !important;
+}
+</style>

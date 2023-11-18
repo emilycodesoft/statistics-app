@@ -12,6 +12,12 @@ import SetVariable from '../components/SetVariableModal.vue'
 import UploadData from '../components/UploadDataModal.vue'
 
 import BinomialDistribution from '../components/BinomialDistribution.vue'
+import PoissonDistribution from '../components/PoissonDistribution.vue'
+import HypergeometricDistribution from '../components/HypergeometricDistribution.vue'
+import PascalDistribution from '../components/PascalDistribution.vue'
+import UniformDistribution from '../components/UniformDistribution.vue'
+import ExponentialDistribution from '../components/ExponentialDistribution.vue'
+import NormalDistribution from '../components/NormalDistribution.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +81,36 @@ const router = createRouter({
           path: 'binomialDistribution',
           name: 'BinomialDistribution',
           component: BinomialDistribution
+        },
+        {
+          path: 'poissonDistribution',
+          name: 'PoissonDistribution',
+          component: PoissonDistribution
+        },
+        {
+          path: 'hypergeometricDistribution',
+          name: 'HypergeometricDistribution',
+          component: HypergeometricDistribution
+        },
+        {
+          path: 'pascalDistribution',
+          name: 'PascalDistribution',
+          component: PascalDistribution
+        },
+        {
+          path: 'exponentialDistribution',
+          name: 'ExponentialDistribution',
+          component: ExponentialDistribution
+        },
+        {
+          path: 'uniformDistribution',
+          name: 'UniformDistribution',
+          component: UniformDistribution
+        },
+        {
+          path: 'normalDistribution',
+          name: 'NormalDistribution',
+          component: NormalDistribution
         }
       ],
       component: () => import('../views/ProbabilityView.vue')
