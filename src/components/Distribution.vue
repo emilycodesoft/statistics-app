@@ -50,7 +50,7 @@
           </div>
           <!-- DistributionResult -->
           <div class="d-flex justify-content-center" v-if="showResult">
-            <p>P(x {{ sign }} {{ k }}) = {{ parseFloat(result.toFixed(2)) }}</p>
+            <p>P(x {{ sign }} {{ k }}) = {{ result }}</p>
           </div>
         </div>
 
