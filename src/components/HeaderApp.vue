@@ -2,13 +2,13 @@
   <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand">
-        <!--  <img
+        <img
           src="/public/graph.png"
           alt="Logo"
           width="30"
           height="30"
-          class="d-inline-block align-text-top me-3"
-        /> -->
+          class="d-inline-block align-text-top ms-2 me-3"
+        />
         Statistics
       </router-link>
       <button
