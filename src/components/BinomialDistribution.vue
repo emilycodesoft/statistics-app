@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Binomial Distribution'"
+    :distributionName="'Distribución Binomial'"
     :data="data"
     :signs="signs"
     @calculate="calculate"

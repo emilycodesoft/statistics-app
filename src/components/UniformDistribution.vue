@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Uniform Distribution'"
+    :distributionName="'Distribución Uniforme'"
     :data="data"
     :signs="signs"
     @calculate="calculate"

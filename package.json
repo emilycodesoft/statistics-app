@@ -18,6 +18,7 @@
     "randomcolor": "^0.6.2",
     "statistics.js": "^1.0.0",
     "vue": "^3.3.4",
+    "vue-i18n": "^8.28.2",
     "vue-router": "^4.2.4",
     "vuex": "^4.0.2"
   },

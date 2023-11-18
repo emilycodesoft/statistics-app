@@ -11,9 +11,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">
-            Calculate {{ distributionName }}
-          </h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Calcular {{ distributionName }}</h1>
           <router-link :to="{ name: 'Probability' }">
             <button
               type="button"
@@ -48,7 +46,7 @@
                 )
               </div>
             </div>
-            <button class="btn btn-primary mt-4" @click="calculate">Calculate</button>
+            <button class="btn btn-primary mt-4" @click="calculate">Calcular</button>
           </div>
           <!-- DistributionResult -->
           <div class="d-flex justify-content-center" v-if="showResult">
@@ -58,7 +56,7 @@
 
         <div class="modal-footer">
           <router-link :to="{ name: 'Probability' }">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </router-link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Normal Distribution'"
+    :distributionName="'Distribución Normal'"
     :data="data"
     :signs="signs"
     @calculate="calculate"

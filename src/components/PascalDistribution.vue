@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Pascal Distribution'"
+    :distributionName="'Distribución Binomial Negativa'"
     :data="data"
     :signs="signs"
     @calculate="calculate"

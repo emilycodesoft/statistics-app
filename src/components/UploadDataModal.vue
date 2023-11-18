@@ -11,7 +11,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Data</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Introduce los datos</h1>
           <router-link :to="{ name: 'Descriptive' }">
             <button
               type="button"
@@ -23,7 +23,7 @@
         </div>
         <div class="modal-body d-flex flex-column justify-content-center">
           <div class="d-flex justify-content-center align-items-center">
-            <label for="actual-btn" class="btn btn-primary">Choose a .csv File</label>
+            <label for="actual-btn" class="btn btn-primary">Escoge un archivo .csv</label>
             <input
               type="file"
               id="actual-btn"
@@ -36,7 +36,7 @@
             <p class="align-self-center">{{ fileName }}</p>
           </div>
           <p>
-            <b>{{ totalRecords }}</b> records
+            <b>{{ totalRecords }}</b> registros
           </p>
 
           <button
@@ -46,12 +46,12 @@
             data-bs-dismiss="modal"
             aria-label="Close"
           >
-            Preview data
+            Visualizar datos
           </button>
         </div>
         <div class="modal-footer">
           <router-link :to="{ name: 'Descriptive' }">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </router-link>
           <button
             type="button"
@@ -60,7 +60,7 @@
             data-bs-dismiss="modal"
             aria-label="Close"
           >
-            Next
+            Siguiente
           </button>
         </div>
       </div>

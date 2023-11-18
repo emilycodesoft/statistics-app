@@ -2,7 +2,7 @@
   <div class="mt-4 ms-4">
     <h2>
       <i class="fa-solid fa-arrow-left pe" @click="$router.back()"></i>
-      General Report: {{ selectedVariable.name }}
+      Reporte General: {{ selectedVariable.name }}
     </h2>
 
     <div class="d-flex justify-content-end w-100 mt-4">
@@ -11,15 +11,15 @@
         @setFrecuenciesTable="showFrecuenciesTable = false"
       />
       <div class="text-center w-50 align-self-center" v-else>
-        <p><b>The frecuencies table cannot be displayed</b></p>
+        <p><b>La tabla de Frecuencias no puede ser mostrada</b></p>
       </div>
       <div class="w-50">
-        <h3>Mesuarements</h3>
-        <p><b>Arithmetic Mean: </b> {{ values.mean }}</p>
-        <p><b>Mode: </b> {{ values.mode }}</p>
+        <h3>Medidas</h3>
+        <p><b>Media aritmetica: </b> {{ values.mean }}</p>
+        <p><b>Moda: </b> {{ values.mode }}</p>
         <template v-if="selectedVariable.type != 'categoric'">
-          <p><b>Variance: </b> {{ values.variance }}</p>
-          <p><b>Standard Deviation: </b> {{ values.standardDeviation }}</p>
+          <p><b>Varianza: </b> {{ values.variance }}</p>
+          <p><b>Desviación estandar: </b> {{ values.standardDeviation }}</p>
         </template>
       </div>
     </div>
@@ -32,10 +32,10 @@
         aria-label="Default select example"
         v-model="componentId"
       >
-        <option selected>Select an statistical graphic</option>
-        <option value="LineChart">Line Graph</option>
-        <option value="BarChart">Bar Chart</option>
-        <option value="PieChart">Pie Chart</option>
+        <option selected>Escoge una grafica estadistica</option>
+        <option value="LineChart">Grafico de lineas</option>
+        <option value="BarChart">Grafico de Barras</option>
+        <option value="PieChart">Diagrama Pastel</option>
       </select>
     </div>
     <div v-if="labels.length || data.length">
@@ -94,6 +94,10 @@ export default {
     }
   },
   mounted() {
+    if (!this.intervals.length) {
+      this.showFrecuenciesTable = false
+      return null
+    }
     if (Object.hasOwn(this.intervals[0], 'inferiorLimit')) {
       this.intervals.forEach((element) => {
         this.labels.push(`[${element.inferiorLimit} - ${element.superiorLimit}]`)

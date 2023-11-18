@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Exponential Distribution'"
+    :distributionName="' Distribución Exponencial'"
     :data="data"
     :signs="signs"
     @calculate="calculate"

@@ -11,7 +11,9 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Choose the variable to analyze</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">
+            Escoge la variable que quieres analizar
+          </h1>
           <router-link :to="{ name: 'GroupData' }">
             <button
               type="button"
@@ -22,6 +24,9 @@
           </router-link>
         </div>
         <div class="modal-body d-flex flex-column justify-content-center">
+          <!-- <p class="text-justify">
+            De tus datos tabulados, escoge la columna o variable que quieres analizar:
+          </p> -->
           <div
             class="form-check my-2"
             v-for="(variable, index) in groupData.variables"
@@ -44,7 +49,7 @@
         <div class="modal-footer">
           <router-link :to="{ name: 'GroupData' }">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              Close
+              Cerrar
             </button></router-link
           >
           <button
@@ -54,7 +59,7 @@
             data-bs-dismiss="modal"
             aria-label="Close"
           >
-            Next
+            Siguiente
           </button>
         </div>
       </div>

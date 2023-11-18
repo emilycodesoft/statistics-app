@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Poisson Distribution'"
+    :distributionName="'Distribución de Poisson'"
     :data="data"
     :signs="signs"
     @calculate="calculate"

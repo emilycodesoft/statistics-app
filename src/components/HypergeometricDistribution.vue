@@ -1,6 +1,6 @@
 <template lang="">
   <Distribution
-    :distributionName="'Hypergeometric Distribution'"
+    :distributionName="'Distribución Hipergeometrica'"
     :data="data"
     :signs="signs"
     @calculate="calculate"
