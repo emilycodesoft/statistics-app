@@ -43,6 +43,8 @@
             class="btn btn-primary align-self-center"
             @click="previewData"
             v-show="totalRecords"
+            data-bs-dismiss="modal"
+            aria-label="Close"
           >
             Preview data
           </button>
