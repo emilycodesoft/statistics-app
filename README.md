@@ -23,8 +23,8 @@ Welcome to the Statistics Vue.js Web App, an interactive web application for sta
 1. Clone this repository: `git clone https://github.com/your-username/statistics-vue-app.git`
 2. Navigate to the project directory: `cd statistics-vue-app`
 3. Install dependencies: `npm install`
-4. Start the application: `npm run serve`
-5. Open your browser and go to `http://localhost:8080`
+4. Start the application: `npm run dev`
+5. Open your browser and go to `http://localhost:5173`
 
 ## Contributions
 
