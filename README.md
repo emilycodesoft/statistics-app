@@ -1,32 +1,43 @@
-# statistics-app
+# Statistics Vue.js Web App
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to the Statistics Vue.js Web App, an interactive web application for statistical data analysis. This application is built with Vue.js and provides powerful tools for efficiently loading, analyzing, and visualizing data.
 
-## Recommended IDE Setup
+## Key Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- **Custom Data Loading:** Upload CSV files and select categorical or numerical variables for detailed analysis.
 
-## Customize configuration
+- **Variable Analysis:** Calculate key statistical measures, such as mean and standard deviation, to better understand your datasets.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Interactive Visualization:** Create customizable charts to intuitively visualize data distribution.
 
-## Project Setup
+- **Probability Distributions:** Access a dedicated module to calculate probability distributions, providing a powerful tool to understand probabilities associated with specific values.
 
-```sh
-npm install
-```
+## System Requirements
 
-### Compile and Hot-Reload for Development
+- **Supported Browsers:** It is recommended to use the latest version of Google Chrome, Mozilla Firefox, Safari, or Microsoft Edge.
 
-```sh
-npm run dev
-```
+- **Compatible Devices:** The application is compatible with Windows, macOS, and Linux operating systems, as well as iOS and Android mobile devices.
 
-### Compile and Minify for Production
+## Installation and Execution
 
-```sh
-npm run build
-```
+1. Clone this repository: `git clone https://github.com/your-username/statistics-vue-app.git`
+2. Navigate to the project directory: `cd statistics-vue-app`
+3. Install dependencies: `npm install`
+4. Start the application: `npm run serve`
+5. Open your browser and go to `http://localhost:8080`
+
+## Contributions
+
+Contributions are welcome! If you find bugs or want to enhance the application, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+We hope you enjoy using the Statistics Vue.js Web App for your statistical analyses! If you have any questions or comments, feel free to reach out. Thank you for using our application!
+
 
 ### Lint with [ESLint](https://eslint.org/)
 
